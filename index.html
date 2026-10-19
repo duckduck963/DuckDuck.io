@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Light</title>
+<style>
+  :root {
+    --vert: #2fd36b;
+    --noir: #000;
+    --blanc: #fff;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blanc);
+    transition: background-color 0.4s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  }
+  body.sombre { background: var(--noir); }
+
+  .boutons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .btn {
+    font-family: inherit;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 0.9rem 2rem;
+    border-radius: 999px;
+    border: 2px solid var(--vert);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .on  { background: var(--vert); color: var(--noir); }
+  .off { background: var(--noir); color: var(--vert); }
+
+  .btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 8px 22px rgba(47, 211, 107, 0.55);
+  }
+  .btn:active { transform: translateY(0) scale(0.98); }
+  .btn:focus-visible { outline: 3px solid var(--vert); outline-offset: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    body, .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="boutons">
+    <button class="btn on" id="btn-on" type="button">Light ON</button>
+    <button class="btn off" id="btn-off" type="button">Light OFF</button>
+  </div>
+<script>
+  var body = document.body;
+  document.getElementById('btn-off').addEventListener('click', function () {
+    body.classList.add("sombre");
+  });
+  document.getElementById('btn-on').addEventListener('click', function () {
+    body.classList.remove("sombre");
+  });
+</script>
+</body>
+</html>
